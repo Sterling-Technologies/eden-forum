@@ -25,8 +25,11 @@ class Front_Page_Index extends Front_Page {
 	public function selectAllTopics(){
 		$topic = $this->_database->topics;
 		$cursor = $topic->find()->sort( array('_id' => -1) );
-		var_dump(iterator_to_array($cursor));
-		return $cursor;
+		$rows = array();
+		foreach ($cursor as $document) {
+		   array_push($rows, $document);
+		}
+		return $rows;
 	}
 	public function deleteAll(){
 		$topic = $this->_database->topics;
@@ -37,11 +40,11 @@ class Front_Page_Index extends Front_Page {
 		$topic = $this->_database->topics;
 
 		$document = array(
-			"title" => $title,
-			"posts" => array(array(
-						"title" => $title,
-						"content" =>$content,
-						"created" => date('Y-m-d H:i:s')
+			"topic_title" => $title,
+			"reply" => array(array(
+						"reply_title" => $title,
+						"reply_content" =>$content,
+						"reply_created" => date('Y-m-d h:i:s')
 						)
 						)
 			);
@@ -50,31 +53,20 @@ class Front_Page_Index extends Front_Page {
 
 			// var_dump($topic);
 	}
-	public function createReply($topicid, $title, $content){
-		$topic = $this->_database->topics;
-		$reply = array(
-								"title" => $title,
-								"content" =>$content,
-								"created" => date('Y-m-d H:i:s')
-						);
-		$document = array('$push' => 
-			array("posts" => $reply));
 
-		$topic->update(array("_id"=>$topicid),$document);
-		
-	}
 	/* Public Methods
 	-------------------------------*/
 	public function render() {
 		$this->_mongo = new MongoClient();
 		$this->_database  = $this->_mongo->forum;
+		// $this->deleteAll();
 		// var_dump($_POST);
 		if(isset($_POST['title'])){
 			$this->createTopic($_POST['title'], $_POST['content']);
 
 		}
 		if(isset($_POST['topicid'])){
-			$this->createReply($_POST['topicid'],$_POST['title'], $_POST['content']);
+			$this->createReply($_POST['topicid'],$_POST['replyTitle'], $_POST['replyContent']);
 
 		}
 // 		if

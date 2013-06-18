@@ -1,25 +1,30 @@
-<div class='container'>
+<div class='well well-reply'>
+<form id='addthread' method='post'>
+	<legend>Create New Thread</legend>
+	<input placeholder='Add thread title here..' class='fullwidth' type="text" name="title" id="title" required><BR>
+	<textarea  class='fullwidth' name='content' id="content" noresize></textarea><BR>
+	<Center><button  class='btn btn-small'> Create Thread </button></center>
+</form>
+</div>
+
 <?php foreach($topics as $topic): $i=0;?>
 
 	<div class='well '>
-		<legend>Thread: <?=$topic['topic_title']?></legend>
+		Thread: <?=$topic['topic_title']?>
 		<?php foreach($topic['reply'] as $reply):  ?>
 			<?php 
 				if($i==0){
+					echo "<br><em>Date Created:" .$reply['reply_created'] . "</em><hr>"; 
 					echo $reply['reply_content'] . "<br>";	
-					echo "<p class='text-right'><em>Date Created:" .$reply['reply_created'] . "</em></p><br>"; 
 					$i++;
 				}
 				else{
-					echo "<div class='well well-small'><h6>Reply #" . $i++ .": " . $reply['reply_title']."</h6><HR>";
+					echo "<div class='well well-small'><h6>Reply #" . $i++ .": " . $reply['reply_title']."</h6>";
 					echo $reply['reply_content'];	
-					echo "<p class='text-right'><em>Date Replied:" .$reply['reply_created'] . "</em></p></div>"; 
+					echo "<hr><em>Date Created:" .$reply['reply_created'] . "</em></div>"; 
 				}
-
 			?>
-
 		<?php endforeach; ?>
-	
 		<form id='addreply' method='post'>
 		<div class='well-reply'>
 			<legend>Add New Reply</legend>
@@ -34,4 +39,3 @@
 	</div>
 
 <?php endforeach; ?>
-</div>
