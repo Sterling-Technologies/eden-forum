@@ -1,0 +1,11 @@
+<?php if(!$user && !$friend): ?>
+<form method="post">
+	<label>Name</label>
+    <input type="text" name="name" /><br />
+	<label>Friend</label>
+    <input type="text" name="friend" /><br />
+    <button type="submit">Update</button>
+</form>
+<?php else: ?>
+<p>Hi <?php echo $friend; ?><br>I Love you!<br><br>from,<br><?php echo $user; ?></p>
+<?php endif; ?>
