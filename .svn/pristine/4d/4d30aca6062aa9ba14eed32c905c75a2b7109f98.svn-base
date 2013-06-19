@@ -1,0 +1,4 @@
+<?php //-->
+return array(
+	'/users/*/friends/*/commments' => 'Front_Page_Foo_Bar_Test2'
+);
