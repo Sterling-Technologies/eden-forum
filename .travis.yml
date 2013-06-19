@@ -15,7 +15,7 @@ before_script:
 script: ./script/ci/run_build.sh
 
 after_success:
-  - git remote dev ssh://openovate@openovate.com/home/openovate/public/forum.openovate.com/eden-forum.git
+  - git remote add dev ssh://openovate@openovate.com/home/openovate/public/forum.openovate.com/eden-forum.git
   - echo "Host openovate.com" >> ~/.ssh/config
   - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
   - echo "   CheckHostIP no" >> ~/.ssh/config
