@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - 5.4
+  - 5.3
+
+env:
+  - DB=mongo
+
+before_script:
+  - echo 'extension = "apc.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo 'extension = "mongo.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+
+after_success:
+  - git remote dev ssh://openovate@openovate.com/home/openovate/public/forum.openovate.com/eden-forum.git
+  - echo "Host openovate.com" >> ~/.ssh/config
+  - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+  - echo "   CheckHostIP no" >> ~/.ssh/config
+  - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - yes | git push dev master
