@@ -1,1 +1,41 @@
+<<<<<<< HEAD
+<div class='container'>
+<?php foreach($topics as $topic): $i=0;?>
+
+	<div class='well '>
+		<legend>Thread: <?=$topic['topic_title']?></legend>
+		<?php foreach($topic['reply'] as $reply):  ?>
+			<?php 
+				if($i==0){
+					echo $reply['reply_content'] . "<br>";	
+					echo "<p class='text-right'><em>Date Created:" .$reply['reply_created'] . "</em></p><br>"; 
+					$i++;
+				}
+				else{
+					echo "<div class='well well-small'><h6>Reply #" . $i++ .": " . $reply['reply_title']."</h6><HR>";
+					echo $reply['reply_content'];	
+					echo "<p class='text-right'><em>Date Replied:" .$reply['reply_created'] . "</em></p></div>"; 
+				}
+
+			?>
+
+		<?php endforeach; ?>
+	
+		<form id='addreply' method='post'>
+		<div class='well-reply'>
+			<legend>Add New Reply</legend>
+			<input type="hidden" name="topicid" value="<?=$topic['_id']?>"><BR>
+			<input placeholder='Add reply title here'  class='fullwidth' type="text" name="replyTitle" id="replyTitle" required><BR>
+			<textarea class='fullwidth' name='replyContent' id="replyContent" no-resize></textarea><BR>
+			<Center><button  class='btn btn-small'>Add Reply</button></center>
+		
+		</div>
+		</form>
+
+	</div>
+
+<?php endforeach; ?>
+</div>
+=======
 TEST
+>>>>>>> 92af35983647b8e1e9603e1e94944f7e280c6f0f
