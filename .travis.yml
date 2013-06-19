@@ -12,6 +12,8 @@ before_script:
   - echo 'extension = "apc.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - echo 'extension = "mongo.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
+script: ./script/ci/run_build.sh
+
 after_success:
   - git remote dev ssh://openovate@openovate.com/home/openovate/public/forum.openovate.com/eden-forum.git
   - echo "Host openovate.com" >> ~/.ssh/config
