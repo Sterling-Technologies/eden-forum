@@ -1,0 +1,49 @@
+<?php //-->
+/*
+ * This file is part a custom application package.
+ */
+
+//http://svn.openovate.com/pokemon/trunk
+
+/**
+ * Default logic to output a page
+ */
+class Front_Page_Foo_Bar_Test2 extends Front_Page {
+	/* Constants
+	-------------------------------*/
+	/* Public Properties
+	-------------------------------*/
+	/* Protected Properties
+	-------------------------------*/
+	protected $_title = 'Foo Bar';
+	protected $_class = 'foo-bar';
+	protected $_template = '/foo/bar/test2.phtml';
+	
+	/* Private Properties
+	-------------------------------*/
+	/* Magic
+	-------------------------------*/
+	/* Public Methods
+	-------------------------------*/
+	public function render() {
+		$userId 	= front()->registry()->get('request', 'variables', 0);
+		$friendId 	= front()->registry()->get('request', 'variables', 1);
+		
+		if(!empty($_POST)) {
+			//do something
+			header('Location: /users/'.$_POST['name'].'/friends/'.$_POST['friend'].'/commments');
+		}
+		
+		$this->_body = array(
+		'user' 		=> $userId,
+		'friend' 	=> $friendId,
+		'data'		=> array(1, 2, 3) );
+		
+		return $this->_page();
+	}
+	
+	/* Protected Methods
+	-------------------------------*/
+	/* Private Methods
+	-------------------------------*/
+}

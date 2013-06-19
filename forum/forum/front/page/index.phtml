@@ -1,0 +1,37 @@
+	<?php var_dump($topics)?>
+<?php foreach($topics as $topic): $i=0;?>
+
+	<div class='well'>
+		Thread: <?=$topic['title']?><hr>
+		<?php foreach($topic['posts'] as $reply): ?>
+			<?php 
+				echo $reply['content'];
+				// if($i==0){
+				// 	echo $reply['content'];	
+				// 	echo "<br><em>Date Created:" .$reply['created'] . "</em>"; 
+				// 	$i++;
+				// }
+				// else{
+				// 	echo "<div class=well><h3>Reply #" . $i ."</h3><hr>";
+				// 	echo $reply['content'];	
+				// 	echo "<br><em>Date Created:" .$reply['created'] . "</em></div>"; 
+				// }
+			?>
+		<?php endforeach; ?>
+		<form id='addreply' method='post'>
+			<input type="hidden" name="topicid" value="<?=$topic['_id']?>"><BR>
+			<input type="text" name="title" id="title" required><BR>
+			<textarea name='content' id="content" noresize></textarea><BR>
+			<button> Reply</button>
+		</form>
+		</div>
+	</div>
+
+<?php endforeach; ?>
+<div class='well'>
+<form id='addthread' method='post'>
+	<input type="text" name="title" id="title" required><BR>
+	<textarea name='content' id="content" noresize></textarea><BR>
+	<button> Create Thread </button>
+</form>
+</div>

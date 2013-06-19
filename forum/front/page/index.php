@@ -22,6 +22,13 @@ class Front_Page_Index extends Front_Page {
 	-------------------------------*/
 	/* Magic
 	-------------------------------*/
+<<<<<<< HEAD
+	/*
+		Selects all the topics
+		@return array
+	*/
+=======
+>>>>>>> ed139f12fd80cbca63c485f8a225c672c2374080
 	public function selectAllTopics(){
 		$topic = $this->_database->topics;
 		$cursor = $topic->find()->sort( array('_id' => -1) );
@@ -31,11 +38,26 @@ class Front_Page_Index extends Front_Page {
 		}
 		return $rows;
 	}
+<<<<<<< HEAD
+	/*
+		Creates deletes the collection topics.
+	*/
+=======
+>>>>>>> ed139f12fd80cbca63c485f8a225c672c2374080
 	public function deleteAll(){
 		$topic = $this->_database->topics;
 		$topic->remove();
 
 	}
+<<<<<<< HEAD
+	/*
+		Creates a topic/thread
+		@param title the subject of the topic string
+		@param content the content of the topic string
+		@return nothing
+	*/
+=======
+>>>>>>> ed139f12fd80cbca63c485f8a225c672c2374080
 	public function createTopic($title, $content){
 		$topic = $this->_database->topics;
 
@@ -50,15 +72,18 @@ class Front_Page_Index extends Front_Page {
 			);
 
 		$topic->insert($document);
+<<<<<<< HEAD
+=======
 
 			// var_dump($topic);
+>>>>>>> ed139f12fd80cbca63c485f8a225c672c2374080
 	}
 
 	/* Public Methods
 	-------------------------------*/
 	public function render() {
-		$this->_mongo = new MongoClient();
-		$this->_database  = $this->_mongo->forum;
+		$this->_mongo = new Mongo('mongodb://eden_forum:jVbOU1AcimS1@ds027708.mongolab.com:27708/eden_forum');
+		$this->_database  = $this->_mongo->eden_forum;
 		// $this->deleteAll();
 		// var_dump($_POST);
 		if(isset($_POST['title'])){
