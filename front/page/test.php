@@ -16,13 +16,18 @@ class Front_Page_Test extends Front_Page {
 	protected $_title = 'Eden';
 	protected $_class = 'home';
 	protected $_template = '/test.phtml';
+<<<<<<< HEAD
 	protected $_mongo;
 	protected $_database;
 	protected $_con = "mongodb://eden_forum:jVbOU1AcimS1@ds027708.mongolab.com:27708/eden_forum";
+=======
+	
+>>>>>>> 92af35983647b8e1e9603e1e94944f7e280c6f0f
 	/* Private Properties
 	-------------------------------*/
 	/* Magic
 	-------------------------------*/
+<<<<<<< HEAD
 	/*
 		Creates a reply and append it on the current post
 		@param topicid the current topic to reply int
@@ -79,6 +84,12 @@ class Front_Page_Test extends Front_Page {
 			$this->createReply($_POST['topicid'],$_POST['replyTitle'], $_POST['replyContent']);
 		}
 		$this->_body = array( 'topics' => $this->selectTopic($id));
+=======
+	/* Public Methods
+	-------------------------------*/
+	public function render() {
+		echo 'asdasd';
+>>>>>>> 92af35983647b8e1e9603e1e94944f7e280c6f0f
 		return $this->_page();
 	}
 	

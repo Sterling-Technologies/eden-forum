@@ -13,6 +13,12 @@ print assets()
 -------------------------------*/
 ->setLoader(NULL, '/library')
 
+<<<<<<< HEAD
+=======
+/* Start Filters
+-------------------------------*/
+->setFilters()
+>>>>>>> 92af35983647b8e1e9603e1e94944f7e280c6f0f
 
 /* Trigger Init Event
 -------------------------------*/
