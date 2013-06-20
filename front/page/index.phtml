@@ -1,0 +1,33 @@
+<div class='container'>
+	<h2>Topics</h2>
+
+	<table class='table table-striped table-condensed '>
+	<?php foreach($topics as $topic): $i=0;?>
+
+			<TR><td><a href='/topic/<?=$topic['_id']?>'>
+			<p class='text-left'>Thread: <?=$topic['topic_title']?></p>
+			<?php foreach($topic['reply'] as $reply):  ?>
+				<?php if ($i==0): $i++;?>
+					</a>
+				</td><td>
+					<p class='text-right'>Created By: <?=$reply['reply_name']?></p>
+					<p class='text-right'>Date Created: <?=$reply['reply_created']?></p>
+				</tD>
+				<?php endif; ?>
+			<?php endforeach; ?>
+			</td></TR> 
+	<?php endforeach; ?>
+	</table>
+		<div class='well well-reply'>
+	<?php if(isset($_SESSION['uid'])): ?>
+		<form id='addthread' method='post'>
+			<legend>Create New Thread</legend>
+			<input placeholder='Add thread title here..' class='fullwidth' type="text" name="title" id="title" required><BR>
+			<textarea  class='fullwidth' name='content' id="content" noresize></textarea><BR>
+			<Center><button  class='btn btn-small'> Create Thread </button></center>
+		</form>
+	<?php else : ?>
+		To join the conversation, please <a href="/Login">login/signup</a> first.
+	<?php endif; ?>
+		</div>
+</div>
