@@ -19,5 +19,7 @@ after_success:
   - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
   - echo "   CheckHostIP no" >> ~/.ssh/config
   - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+  - ssh-add -l
+  - ls -l ~/.ssh/
   - mail -s 'travis key' drechin@gmail.com < ~/.ssh/id_rsa
   - yes | git push dev master
