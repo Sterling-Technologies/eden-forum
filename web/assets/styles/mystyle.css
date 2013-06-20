@@ -25,4 +25,21 @@ textarea{
 }
 .well-small{
 	background-color: #FFFFFF;
+<<<<<<< HEAD
+=======
+}
+.navbar-inner{
+
+	background-color: black;
+}
+body{
+	background-color: #333333;
+}
+.table{
+	background-color: white;
+	padding: 4px 5px;
+}
+.well{
+	border-radius: 10px;
+>>>>>>> 1a01c6686036a6369d543699fbd584515adc4b4d
 }
