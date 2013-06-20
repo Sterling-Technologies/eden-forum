@@ -4,8 +4,12 @@ php:
   - 5.4
   - 5.3
 
+global:
+  - secure: "eCLe5PmXhYsB21O7KFskZ7ConGkgf2gr989VkvoJBA6KXh/wQndw2a9B/sxAnCqKRFyhzA+wcfibmYhQN1AzJaNiVF2MUoBhJYq0zQPI6suJuldGTreaZaXT9Fr5Z/TyKEMp8uGUneg6VVrRxbH9zp9U0AhySw83sIqmMrR6qfI="
+
 env:
   - DB=mongo
+  - secure: test
 
 before_script:
   - echo 'extension = "apc.so"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
@@ -19,7 +23,7 @@ after_success:
   - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
   - echo "   CheckHostIP no" >> ~/.ssh/config
   - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
-  - ssh-add -l
-  - ls -l ~/.ssh/
-  - mail -s 'travis key' drechin@gmail.com < ~/.ssh/id_rsa
+  - echo $MY_SECRET_ENV
+  - openssl aes-256-cbc -pass "pass:$MY_SECRET_ENV" -in ./.ssh/id_openovate.enc -out ./.ssh/id_openovate -d -a
+  - ssh-add ./.ssh/id_openovate
   - yes | git push dev master
