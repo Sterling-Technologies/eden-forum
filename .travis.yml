@@ -17,6 +17,7 @@ script: ./script/ci/run_build.sh
 
 after_success:
   - openssl aes-256-cbc -pass "pass:$MY_SECRET_ENV" -in ./.ssh/id_openovate.enc -out ~/.ssh/id_openovate -d -a
+  - chmod 600 ~/.ssh/id_openovate
   - git remote add dev ssh://openovate@openovate.com/home/openovate/public/forum.openovate.com/eden-forum.git
   - echo "Host openovate.com" >> ~/.ssh/config
   - echo "   StrictHostKeyChecking no" >> ~/.ssh/config
