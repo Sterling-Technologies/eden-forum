@@ -18,21 +18,10 @@ class Front_Page_Index extends Front_Page {
 	protected $_template = '/index.phtml';
 	protected $_mongo;
 	protected $_database;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	protected $_con = "mongodb://eden_forum:jVbOU1AcimS1@ds027708.mongolab.com:27708/eden_forum";
-=======
->>>>>>> 92af35983647b8e1e9603e1e94944f7e280c6f0f
-=======
->>>>>>> 1a01c6686036a6369d543699fbd584515adc4b4d
+
 	/* Private Properties
 	-------------------------------*/
 	/* Magic
-	-------------------------------*/
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1a01c6686036a6369d543699fbd584515adc4b4d
 	/*
 		Selects all the topics
 		@return array
