@@ -29,39 +29,7 @@ class Front_Page_Test extends Front_Page {
 		@param content the content of the reply string
 		@return nothing
 	*/
-	public function createReply($topicid, $title, $content){
-		$topic = $this->_database->topics;
-		$reply = array(		"reply_title" => $title,
-								"reply_content" =>$content,
-								"reply_created" => date('Y-m-d H:i A'),
-								"reply_userid" => $_SESSION['uid'],
-								"reply_name" => $_SESSION['name'],
-								"reply_picture" => $_SESSION['user_picture']
-						);
-		$document = array('$addToSet' => array("reply" => $reply));
 
-		$id = new MongoId($topicid);
-		$topic->update(array("_id"=>$id),$document);
-	}
-	/*
-		Selects the topic details base on the id
-		@param topicid the current topic int
-		@return array
-	*/
-	public function selectTopic($topicid){
-		$topic = $this->_database->topics;
-		$id = new MongoId($topicid);
-
-		$cursor = $topic->find(array("_id"=>$id));
-
-		return $cursor;
-	}
-	public function getUsers(){
-		$users = $this->_database->users;
-		$cursor = $users->find();
-		return $cursor;
-
-	}
 	//split the URI segments
 	public function getUriSegments() {
 	    return explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
@@ -74,19 +42,13 @@ class Front_Page_Test extends Front_Page {
 	/* Public Methods
 	-------------------------------*/
 	public function render() {
-		if ($_SERVER['HTTP_HOST'] == 'forum.openovate.com'){
-			define('DOCROOT', realpath(dirname(__FILE__)).'/');
-			include(DOCROOT . 'mongo.inc');
-			}
-		else 
-		    $this->_mongo = new MongoClient();
+		$forum = front()->Forum();	
 
-		$this->_database  = $this->_mongo->eden_forum;
 		$id = $this->getUriSegment(2);
 		if(isset($_POST['topicid'])){
-			$this->createReply($_POST['topicid'],$_POST['replyTitle'], $_POST['replyContent']);
+			$forum->createReply($_POST['topicid'],$_POST['replyTitle'], $_POST['replyContent']);
 		}
-		$this->_body = array( 'topics' => $this->selectTopic($id), 'users' => $this->getUsers());
+		$this->_body = array( 'topics' => $forum->selectTopic($id), 'users' => $forum->selectUsers());
 		return $this->_page();
 	}
 	

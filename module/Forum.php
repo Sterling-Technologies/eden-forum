@@ -99,9 +99,44 @@ class Forum extends Eden_Class {
         $topic->insert($document);
     }
     /*
-        Selects all the users
+        Creates a reply
+        @param topicid the id of the current topic
+        @param title the subject of the topic string
+        @param content the content of the topic string
+        @return nothing
+    */
+    public function createReply($topicid, $title, $content){
+        $topic = $this->_collection->topics;
+        $reply = array(     "reply_title" => $title,
+                                "reply_content" =>$content,
+                                "reply_created" => date('Y-m-d H:i A'),
+                                "reply_userid" => $_SESSION['uid'],
+                                "reply_name" => $_SESSION['name'],
+                                "reply_picture" => $_SESSION['user_picture']
+                        );
+        $document = array('$addToSet' => array("reply" => $reply));
+
+        $id = new MongoId($topicid);
+        $topic->update(array("_id"=>$id),$document);
+    }
+    /*
+        Fetches the topic with that id
+        @param topicid 
         @return array
     */
+    public function selectTopic($topicid){
+        $topic = $this->_collection->topics;
+        $id = new MongoId($topicid);
+
+        $cursor = $topic->find(array("_id"=>$id));
+
+        return iterator_to_array($cursor);
+    }
+    /*
+        Checks if the email is already taken
+        @param email
+        @return boolean
+    */    
     public function checkEmail($email){
         $users = $this->_collection->users;
         $cursor = $users->find(array('user_email' => $email));
@@ -154,7 +189,10 @@ class Forum extends Eden_Class {
     public function checkUser($email, $password){
         $users = $this->_collection->users;
         $cursor = $users->find(array('user_email' => $email , 'user_password' => $password));
-        return iterator_to_array($cursor);
+
+        foreach ($cursor as $user) {
+            return $user;
+        }
     }
     /*
         Selects all the users
@@ -171,7 +209,7 @@ class Forum extends Eden_Class {
         @return array
     */
     public function deleteAllUsers(){
-        $users = $this->_database->users;
+        $users = $this->_collection->users;
         $users->remove();
 
     }

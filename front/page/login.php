@@ -30,6 +30,7 @@ class Front_Page_Login extends Front_Page {
 		$_SESSION['uid'] = $document['_id'];
         $_SESSION['name'] = $document['user_firstname'] . " " . $document['user_lastname'];
         $_SESSION['user_picture'] = $document['user_picture'];
+
         if(isset($_GET['redirect'])){
             header("location: /topic/".$_GET['redirect']);
         }
