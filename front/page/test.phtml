@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 1a01c6686036a6369d543699fbd584515adc4b4d
 <div class='container'>
 <?php foreach($topics as $topic): $i=0;?>
 
@@ -10,54 +6,30 @@
 		<?php foreach($topic['reply'] as $reply):  ?>
 			<?php 
 				if($i==0){
-<<<<<<< HEAD
-					echo $reply['reply_content'] . "<br>";	
-					echo "<p class='text-right'><em>Date Created:" .$reply['reply_created'] . "</em></p><br>"; 
-=======
-					echo $reply['reply_content'] . "<br>";
-					echo "<p class='text-right'><em>Created By:" .$reply['reply_name'] . "</em></p>"; 
-					echo "<p class='text-right'><em>Date Created:" .$reply['reply_created'] . "</em></p>"; 
->>>>>>> 1a01c6686036a6369d543699fbd584515adc4b4d
+					echo "<div class='well well-small'><table cellpadding='10px'><tr><td width=25%><small>";
+					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='100' height='100'><BR>"; 
+					echo $reply['reply_name']; 
+					echo "<BR>Date Created:<BR>" .$reply['reply_created'] . "</td><td valign=top width=75%>"; 
+					echo "Thread:".$topic['topic_title'] ."<hr>";
+					echo $reply['reply_content'] . "</small></td></tr></table></div>";
 					$i++;
 				}
 				else{
-					echo "<div class='well well-small'><h6>Reply #" . $i++ .": " . $reply['reply_title']."</h6><HR>";
-					echo $reply['reply_content'];	
-<<<<<<< HEAD
-=======
-					echo "<p class='text-right'><em>Reply By:" .$reply['reply_name'] . "</em></p>"; 
->>>>>>> 1a01c6686036a6369d543699fbd584515adc4b4d
-					echo "<p class='text-right'><em>Date Replied:" .$reply['reply_created'] . "</em></p></div>"; 
+					echo "<div class='well well-small'><table cellpadding='10px'><tr><td width=180><small>";
+					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='100' height='100'><BR>"; 
+					echo $reply['reply_name']; 
+					echo "<BR>Date Created:<BR>" .$reply['reply_created'] . "</p></td><td valign=top width=100%>"; 
+					echo "Reply #" . $i++ .": " . $reply['reply_title'] ."<hr>";
+					echo $reply['reply_content'] . "</small></td></tr></table></div>";
 				}
 
 			?>
 
 		<?php endforeach; ?>
-<<<<<<< HEAD
-	
-		<form id='addreply' method='post'>
-		<div class='well-reply'>
-			<legend>Add New Reply</legend>
-			<input type="hidden" name="topicid" value="<?=$topic['_id']?>"><BR>
-			<input placeholder='Add reply title here'  class='fullwidth' type="text" name="replyTitle" id="replyTitle" required><BR>
-			<textarea class='fullwidth' name='replyContent' id="replyContent" no-resize></textarea><BR>
-			<Center><button  class='btn btn-small'>Add Reply</button></center>
-		
-		</div>
-		</form>
-
-	</div>
-
-<?php endforeach; ?>
-</div>
-=======
-TEST
->>>>>>> 92af35983647b8e1e9603e1e94944f7e280c6f0f
-=======
 
 			<form id='addreply' method='post'>
 		<?php if(isset($_SESSION['uid'])): ?>
-		<div class='well-reply'>
+		<div class='well well-reply'>
 				<legend>Add New Reply</legend>
 				<input type="hidden" name="topicid" value="<?=$topic['_id']?>"><BR>
 				<input placeholder='Add reply title here'  class='fullwidth' type="text" name="replyTitle" id="replyTitle" required><BR>
@@ -73,4 +45,3 @@ TEST
 
 <?php endforeach; ?>
 </div>
->>>>>>> 1a01c6686036a6369d543699fbd584515adc4b4d

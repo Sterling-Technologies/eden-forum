@@ -40,7 +40,7 @@
 				</form>
 			</DIV>
 			<div class="span6">
-	      		<form class="form-horizontal" id='signup' name='signup' method="POST">
+	      		<form class="form-horizontal" id='signup' name='signup' method="POST"  enctype="multipart/form-data">
     				<fieldset>
    						<div id="legend">
    						<legend class="">Register</legend>
@@ -48,17 +48,17 @@
     				<div class="control-group">
 						<?=$signerrors?>
 					</div>
-			<!-- 		<div class="control-group">
+					<div class="control-group">
 						<label class="control-label" for="firstname">Avatar</label>
 						<div class="controls">
-					   	  <span class="btn btn-success fileinput-button">
-					        <i class="icon-plus icon-white"></i>
-					        <span>Select files...</span>
-					        <input id="fileupload" type="file" name="files[]" multiple>
-					    	</span>
-					    	<div id="files" class="files"></div>
+							<div class="fileupload fileupload-new" data-provides="fileupload">
+							<div class="input-append">
+							<div class="uneditable-input"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" name="myFile"/></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+							</div>
+							</div>
+							<p class="help-block">Image files only.</p>
 					    </div>
-    				</div> -->
+    				</div>
    					<div class="control-group">
 					   	<label class="control-label" for="firstname">Firstname</label>
 					    <div class="controls">
