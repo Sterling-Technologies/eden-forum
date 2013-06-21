@@ -6,17 +6,17 @@
 		<?php foreach($topic['reply'] as $reply):  ?>
 			<?php 
 				if($i==0){
-					echo "<div class='well well-small'><table cellpadding='10px'><tr><td width=25%><small>";
-					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='100' height='100'><BR>"; 
+					echo "<div class='well well-small'><table cellpadding='10px'><tr><td><small>";
+					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='120' height='100'><BR>"; 
 					echo $reply['reply_name']; 
-					echo "<BR>Date Created:<BR>" .$reply['reply_created'] . "</td><td valign=top width=75%>"; 
+					echo "<BR>Date Created:<BR>" .$reply['reply_created'] . "</td><td valign=top width=100%>"; 
 					echo "Thread:".$topic['topic_title'] ."<hr>";
 					echo $reply['reply_content'] . "</small></td></tr></table></div>";
 					$i++;
 				}
 				else{
-					echo "<div class='well well-small'><table cellpadding='10px'><tr><td width=180><small>";
-					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='100' height='100'><BR>"; 
+					echo "<div class='well well-small'><table cellpadding='10px'><tr><td><small>";
+					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='120' height='100'><BR>"; 
 					echo $reply['reply_name']; 
 					echo "<BR>Date Created:<BR>" .$reply['reply_created'] . "</p></td><td valign=top width=100%>"; 
 					echo "Reply #" . $i++ .": " . $reply['reply_title'] ."<hr>";
