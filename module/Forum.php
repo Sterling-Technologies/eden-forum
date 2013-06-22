@@ -62,7 +62,7 @@ class Forum extends Eden_Class {
     */
     public function getAllTopics(){
 
-        $topic = $this->_collection->topics;
+        $topic  = $this->_collection->topics;
         $cursor = $topic->find()->sort( array('_id' => -1) );
         return iterator_to_array($cursor);
     }
@@ -76,8 +76,8 @@ class Forum extends Eden_Class {
     }
     /*
         Creates a topic/thread
-        @param title the subject of the topic string
-        @param content the content of the topic string
+        @param string title the subject of the topic string
+        @param string content the content of the topic string
         @return nothing
     */
     public function createTopic($title, $content){
@@ -100,28 +100,31 @@ class Forum extends Eden_Class {
     }
     /*
         Creates a reply
-        @param topicid the id of the current topic
-        @param title the subject of the topic string
-        @param content the content of the topic string
+        @param number topicid the id of the current topic
+        @param string title the subject of the topic string
+        @param string content the content of the topic string
         @return nothing
     */
     public function createReply($topicid, $title, $content){
         $topic = $this->_collection->topics;
-        $reply = array(     "reply_title" => $title,
-                                "reply_content" =>$content,
-                                "reply_created" => date('Y-m-d H:i A'),
-                                "reply_userid" => $_SESSION['uid'],
-                                "reply_name" => $_SESSION['name'],
-                                "reply_picture" => $_SESSION['user_picture']
+        $reply = array( "reply_title"   => $title,
+                        "reply_content" =>$content,
+                        "reply_created" => date('Y-m-d H:i A'),
+                        "reply_userid"  => $_SESSION['uid'],
+                        "reply_name"    => $_SESSION['name'],
+                        "reply_picture" => $_SESSION['user_picture']
                         );
-        $document = array('$addToSet' => array("reply" => $reply));
+        $document = array(
+            '$addToSet' => array(
+                        "reply" => $reply
+                ));
 
         $id = new MongoId($topicid);
         $topic->update(array("_id"=>$id),$document);
     }
     /*
         Fetches the topic with that id
-        @param topicid 
+        @param number topicid 
         @return array
     */
     public function selectTopic($topicid){
@@ -134,12 +137,14 @@ class Forum extends Eden_Class {
     }
     /*
         Checks if the email is already taken
-        @param email
+        @param string email
         @return boolean
     */    
     public function checkEmail($email){
         $users = $this->_collection->users;
-        $cursor = $users->find(array('user_email' => $email));
+        $cursor = $users->find(array(
+            'user_email' => $email
+            ));
         return !$cursor->count();
     }
     /*
@@ -149,12 +154,12 @@ class Forum extends Eden_Class {
     public function uploadAvatar(){
 
         if ((($_FILES["myFile"]["type"] == "image/gif")
-        || ($_FILES["myFile"]["type"] == "image/jpeg")
-        || ($_FILES["myFile"]["type"] == "image/jpg")
-        || ($_FILES["myFile"]["type"] == "image/pjpeg")
-        || ($_FILES["myFile"]["type"] == "image/x-png")
+        || ($_FILES["myFile"]["type"]   == "image/jpeg")
+        || ($_FILES["myFile"]["type"]   == "image/jpg")
+        || ($_FILES["myFile"]["type"]   == "image/pjpeg")
+        || ($_FILES["myFile"]["type"]   == "image/x-png")
         && ($_FILES["myFile"]["type"] != "")
-        || ($_FILES["myFile"]["type"] == "image/png")))
+        || ($_FILES["myFile"]["type"]   == "image/png")))
         {
             move_uploaded_file($_FILES['myFile']['tmp_name'], 'assets/uploads/' . $_FILES['myFile']['name']);
             return true;
@@ -172,23 +177,25 @@ class Forum extends Eden_Class {
         $this->uploadAvatar();
         $document = array(
             "user_firstname" => $_POST['firstname'],
-            "user_lastname" => $_POST['lastname'],
-            "user_email" => $_POST['email'],
-            "user_password" => $_POST['password'],
-            "user_picture" => (isset($_FILES['myFile']['name'])) ? $_FILES['myFile']['name'] : ""
+            "user_lastname"  => $_POST['lastname'],
+            "user_email"     => $_POST['email'],
+            "user_password"  => $_POST['password'],
+            "user_picture"   => (isset($_FILES['myFile']['name'])) ? $_FILES['myFile']['name'] : ""
             );
         $users->insert($document);
         return $document;
     }
      /*
         Check if theres a user with that email and password
-        @param email
-        @param password 
+        @param string email 
+        @param string password 
         @return array
     */
     public function checkUser($email, $password){
         $users = $this->_collection->users;
-        $cursor = $users->find(array('user_email' => $email , 'user_password' => $password));
+        $cursor = $users->find(array(
+            'user_email'     => $email ,
+            'user_password'  => $password));
 
         foreach ($cursor as $user) {
             return $user;

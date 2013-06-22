@@ -4,32 +4,48 @@
 	<div class='well '>
 		<legend>Thread: <?=$topic['topic_title']?></legend>
 		<?php foreach($topic['reply'] as $reply):  ?>
-			<?php 
-				if($i==0){
-					echo "<div class='well well-small'><table cellpadding='10px'><tr><td><small>";
-					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='120' height='100'><BR>"; 
-					echo $reply['reply_name']; 
-					echo "<BR>Date Created:<BR>" .$reply['reply_created'] . "</td><td valign=top width=100%>"; 
-					echo "Thread:".$topic['topic_title'] ."<hr>";
-					echo $reply['reply_content'] . "</small></td></tr></table></div>";
-					$i++;
-				}
-				else{
-					echo "<div class='well well-small'><table cellpadding='10px'><tr><td><small>";
-					echo "<img src='/assets/uploads/" . $reply['reply_picture'] . "' width='120' height='100'><BR>"; 
-					echo $reply['reply_name']; 
-					echo "<BR>Date Created:<BR>" .$reply['reply_created'] . "</p></td><td valign=top width=100%>"; 
-					echo "Reply #" . $i++ .": " . $reply['reply_title'] ."<hr>";
-					echo $reply['reply_content'] . "</small></td></tr></table></div>";
-				}
+			<?php if($i==0) : $i++;?>
+					<div class='well well-small'>
+						<table cellpadding='10px'>
+							<tr>
+								<td>
+									<small><img src='/assets/uploads/<?=$reply['reply_picture']?>' width='120' height='100'><BR> 
+									<?=$reply['reply_name']?> 
+									<BR>Date Created:<BR>
+									<?=$reply['reply_created']?>
+								</td>
+								<td valign=top width=100%>
+					 				Thread:<?$topic['topic_title']?> <hr>
+									<?=$reply['reply_content']?></small>
+								</td>
+							</tr>
+						</table>
+					</div>
+			<?php else : ?>
+					<div class='well well-small'>
+						<table cellpadding='10px'>
+							<tr>
+								<td>
+									<small><img src='/assets/uploads/<?=$reply['reply_picture']?>' width='120' height='100'><BR>
+									<?=$reply['reply_name']?> 
+									<BR>Date Created:<BR>
+									<?=$reply['reply_created']?>
+								</td>
+								<td valign=top width=100%>"; 
+									Reply # <?=$i++?>  <?=$reply['reply_title']?> <hr>
+									<?=$reply['reply_content']?></small>
+								</td>
+							</tr>
+						</table>
+					</div>
 
-			?>
+			<?php endif; ?>
 
 		<?php endforeach; ?>
 
 			<form id='addreply' method='post'>
 		<?php if(isset($_SESSION['uid'])): ?>
-		<div class='well well-reply'>
+			<div class='well well-reply'>
 				<legend>Add New Reply</legend>
 				<input type="hidden" name="topicid" value="<?=$topic['_id']?>"><BR>
 				<input placeholder='Add reply title here'  class='fullwidth' type="text" name="replyTitle" id="replyTitle" required><BR>
@@ -37,8 +53,8 @@
 				<Center><button  class='btn btn-small'>Add Reply</button></center>
 			</form>
 		<?php else : ?>
-		To join the conversation, please 
-		<a href="/Login?redirect=<?=$topic['_id']?>">login/signup</a> first.
+			To join the conversation, please 
+			<a href="/Login?redirect=<?=$topic['_id']?>">login/signup</a> first.
 		<?php endif; ?>
 		</div>
 	</div>

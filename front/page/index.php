@@ -31,16 +31,12 @@ class Front_Page_Index extends Front_Page {
 			session_destroy();
 			header("location: /login");
 		}
-		
 		if(isset($_POST['title'])){
 			$forum->createTopic($_POST['title'], $_POST['content']);
-
 		}
 		if(isset($_POST['topicid'])){
 			$forum->createReply($_POST['topicid'],$_POST['replyTitle'], $_POST['replyContent']);
-
 		}
-// 		if
 		$this->_body = array( 
 			'topics' => $forum->getAllTopics()
 			);
