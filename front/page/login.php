@@ -75,8 +75,8 @@ class Front_Page_Login extends Front_Page {
 		}
 
 		$this->_body = array( 
-			'users' => $forum->selectUsers(),
-			'signerrors' => $signerrors,
+			'users'       => $forum->selectUsers(),
+			'signerrors'  => $signerrors,
 			'loginerrors' => $loginerrors
 			);
 		return $this->_page();
