@@ -13,7 +13,7 @@ class Front_Page_Login extends Front_Page {
 	-------------------------------*/
 	/* Protected Properties
 	-------------------------------*/
-	protected $_title = 'Openovate forum - Login';
+	protected $_title = 'Openovate Forums - Login';
 	protected $_class = 'home';
 	protected $_template = '/login.phtml';
 	protected $_mongo;

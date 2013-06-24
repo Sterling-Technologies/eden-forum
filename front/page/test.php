@@ -13,7 +13,7 @@ class Front_Page_Test extends Front_Page {
 	-------------------------------*/
 	/* Protected Properties
 	-------------------------------*/
-	protected $_title = 'Eden';
+	protected $_title = 'Openovate Forums';
 	protected $_class = 'home';
 	protected $_template = '/test.phtml';
 	protected $_mongo;

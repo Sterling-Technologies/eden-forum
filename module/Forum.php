@@ -218,11 +218,12 @@ class Forum extends Eden_Class {
         $users = $this->_collection->users;
         $cursor = $users->find(array('user_email'=> $email));
         foreach ($cursor as $user) {
-            // include(front()->path('config').'/smtp.inc');
-            // $smtp->setSubject('Lost password - Openovate Forums')
-            //     ->setBody('Your password is: ' . $user['user_password'] . "<BR>Visit us again at <a  href = 'http://forum.openovate.com'> Openovate Forums </a>",true)
-            //     ->addTo($email)
-            //     ->send();
+            $subject = 'Lost password - Openovate Forums';
+            $to      = $email;
+            $mail    = 'Your password is: ' . $user['user_password'] . "\n Visit us again at Openovate Forums";
+            $headers = "From: webmaster@openovate.com" . "\r\n";
+            mail($to, $subject, $mail,$headers);
+
             return "Your password has been sent to your email.";
         }
         return "Invalid email.";
