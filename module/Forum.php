@@ -151,13 +151,14 @@ class Forum extends Eden_Class {
         @return boolean
     */
     public function uploadAvatar(){
-
+        $maxsize    = 1097152;
         if ((($_FILES["myFile"]["type"] == "image/gif")
         || ($_FILES["myFile"]["type"]   == "image/jpeg")
         || ($_FILES["myFile"]["type"]   == "image/jpg")
         || ($_FILES["myFile"]["type"]   == "image/pjpeg")
         || ($_FILES["myFile"]["type"]   == "image/x-png")
         && ($_FILES["myFile"]["type"] != "")
+        && ($_FILES['uploaded_file']['size'] >= $maxsize)
         || ($_FILES["myFile"]["type"]   == "image/png")))
         {
             move_uploaded_file($_FILES['myFile']['tmp_name'], 'assets/uploads/' . $_FILES['myFile']['name']);
