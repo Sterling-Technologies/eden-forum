@@ -174,13 +174,21 @@ class Forum extends Eden_Class {
     */
     public function createUser(){
         $users = $this->_collection->users;
-        $this->uploadAvatar();
+        // $this->uploadAvatar();
+        $filename = "";
+        if(empty($_FILES['myFile']['name'])){
+            $filename = "defPic3.png";
+        }
+        else{
+            $filename = $_FILES['myFile']['name'];
+        }
+        
         $document = array(
             "user_firstname" => $_POST['firstname'],
             "user_lastname"  => $_POST['lastname'],
             "user_email"     => $_POST['email'],
             "user_password"  => $_POST['password'],
-            "user_picture"   => (isset($_FILES['myFile']['name'])) ? $_FILES['myFile']['name'] : ""
+            "user_picture"   => $filename
             );
         $users->insert($document);
         return $document;
