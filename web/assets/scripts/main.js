@@ -39,5 +39,35 @@ $(document).ready(function(){
 	    }
 	});
 
-	
+	$('#myModal').on('show', function (e) {
+    	$('#forgotresponse').hide();
+    });
+    $('#myModal').on('hidden', function (e) {
+    	$("#forgotresponse").attr('class', 'alert alert-error');
+    	$('#forgotresponse').html("");
+    	$('#femail').val("");
+    	$('#forgotresponse').hide();
+    });
+
+
+    $('#sendEmail').click(function(){
+    		 $.ajax({
+    	        url: "/forgot",
+    	        type: "post",
+    	        data: "&femail=" + $('#femail').val() ,
+    	        beforeSend : function(){
+			     	$('#forgotresponse').show();
+			     	$('#forgotresponse').html('Checking...');
+			    },
+    	    	}).done(function(msg){
+    	    		$('#forgotresponse').show();
+    	    		if(msg=="Invalid email."){
+
+    	    		$("#forgotresponse").attr('class', 'alert error');
+    	    		}else{
+    	    		$("#forgotresponse").attr('class', 'alert alert-success');
+    	    		}
+    	  			$('#forgotresponse').html(msg);
+    		  	});
+    });
 });

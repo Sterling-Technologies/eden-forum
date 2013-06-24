@@ -32,18 +32,22 @@
 			      <div class="controls">
 			      	 <!-- <div class="input-prepend"> -->
 			      	 	<!-- <span class="add-on"><i class=" icon-arrow-right"></i></span></div>  -->
-			       		<button type="submit" class="btn btn-success login" ><span class="IL_AD" id="IL_AD4">Login</span></button>
-			      	 
+			       		<button type="submit" class="btn btn-success login" ><span class="IL_AD" id="IL_AD4">Login</button>
 			       </div>
 			   	 </div>
-			   	 
+			   	<div class="control-group">
+				<label class="control-label"></label>
+			      <div class="controls">	
+			      	 <p class="help-block">Forgot your password? Click <a data-toggle="modal" data-target="#myModal">here</a>.</p>
+			      </div>
+			    </div>
 				</form>
 			</DIV>
 			<div class="span6">
 	      		<form class="form-horizontal" id='signup' name='signup' method="POST"  enctype="multipart/form-data">
     				<fieldset>
    						<div id="legend">
-   						<legend class="">Register</legend>
+   						<legend class="">Sign up for a new account.</legend>
     					</div>
     				<div class="control-group">
 						<?=$signerrors?>
@@ -105,3 +109,22 @@
 	</div>
    </div>
 </div>
+
+					<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h3 id="myModalLabel">Forgot Password</h3>
+							</div>
+						<div class="modal-body">
+
+							<div class="control-group">
+							    <div class="controls">
+							   		<input type='text' id='femail' name='femail' placeholder="Enter your email" class="input-xlarge fullwidth">
+							    </div>
+								<button class="btn btn-primary" id='sendEmail'>Send password to your email</button>
+						    </div>
+							    <div id="forgotresponse" class='alert alert error'></div>
+						</div>
+						<div class="modal-footer">
+						</div>
+					</div>

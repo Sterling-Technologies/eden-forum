@@ -209,6 +209,24 @@ class Forum extends Eden_Class {
         }
     }
     /*
+        Returns the password of the given email. Returns null if no email matched.
+        @param string password 
+        @return array
+    */
+    public function getPassword($email){
+        $users = $this->_collection->users;
+        $cursor = $users->find(array('user_email'=> $email));
+        foreach ($cursor as $user) {
+            include(front()->path('config').'/smtp.inc');
+            $smtp->setSubject('Lost password - Openovate Forums')
+                ->setBody('Your password is: ' . $user['user_password'] . "<BR>Visit us again at <a  href = 'http://forum.openovate.com'> Openovate Forums </a>",true)
+                ->addTo($email)
+                ->send();
+            return "Your password has been sent to your email.";
+        }
+        return "Invalid email.";
+    }
+    /*
         Selects all the users
         @return array
     */

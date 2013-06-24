@@ -2,7 +2,7 @@
 <?php foreach($topics as $topic): $i=0;?>
 
 	<div class='well '>
-		<legend>Thread: <?=$topic['topic_title']?></legend>
+		<legend><a href="/">Topics</a> > Thread: <?=$topic['topic_title']?></legend>
 		<?php foreach($topic['reply'] as $reply):  ?>
 			<?php if($i==0) : $i++;?>
 					<div class='well well-small'>
