@@ -53,7 +53,7 @@ class Front_Page_Login extends Front_Page {
 						$this->saveUserDetails($forum->createUser());
 					}	
 					else{
-						$signerrors = "<div class='error_box1 alert alert error'>File type not accepted or file is too large.</div>";
+						$signerrors = "<div class='error_box1 alert alert error'>File type not accepted or file exceeds 1mb.</div>";
 					}
 				}
 				else{
