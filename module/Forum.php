@@ -14,8 +14,7 @@ class Forum extends Eden_Class {
     -------------------------------*/
     public function __construct() {
         if ($_SERVER['HTTP_HOST'] == 'forum.openovate.com'){
-            define('DOCROOT', realpath(dirname(__FILE__)).'/');
-            include(DOCROOT . 'mongo.inc');
+            include(front()->path('config').'/mongo.inc');
             $this->_mongo = new Mongo($mongo);
         }
         else {
