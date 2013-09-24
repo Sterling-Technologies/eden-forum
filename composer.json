@@ -1,0 +1,20 @@
+{
+    "name": "eden-php/core",
+    "type": "library",
+    "description": "Sorry Packagist wont let me rename. My bads",
+    "keywords": ["please remove", "please delete"],
+    "homepage": "http://delete-this-package.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tony Stark",
+            "email": "iron@man.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.1",
+    },
+    "autoload": {
+         "psr-0": { "Eden\\Core\\": "" }
+    }
+}
